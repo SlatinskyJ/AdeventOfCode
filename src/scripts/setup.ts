@@ -95,7 +95,7 @@ async function updateIndex(day: number) {
 	const contents = (await promises.readFile(indexPath, { encoding: 'utf8' }))
 		.replace(
 			'// MORE IMPORTS HERE',
-			`import day${day} from './day${day}/index';
+			`import day${day} from './days/${day}/solution';
 // MORE IMPORTS HERE`
 		)
 		.replace(

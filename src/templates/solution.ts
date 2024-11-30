@@ -1,4 +1,4 @@
-import { Day } from './day';
+import { Day } from 'templates/day';
 
 class Day0 extends Day {
 	constructor() {
