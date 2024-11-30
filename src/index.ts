@@ -1,12 +1,8 @@
 import { Day } from 'templates/day';
 
-import day0 from './days/0/solution';
-import day0 from './days/0/solution';
 // MORE IMPORTS HERE
 const days: Day[] = [
-	day0,
-	day0,
-    // MORE DAYS HERE
+	// MORE DAYS HERE
 ];
 
 async function runDay(dayId: number) {
