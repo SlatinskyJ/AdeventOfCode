@@ -100,7 +100,7 @@ async function updateIndex(day: number) {
 		)
 		.replace(
 			'// MORE DAYS HERE',
-			`day${day},
+			`[${day}, day${day}],
     // MORE DAYS HERE`
 		);
 
