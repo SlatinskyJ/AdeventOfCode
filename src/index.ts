@@ -1,7 +1,9 @@
 import { Day } from 'templates/day';
 
+import day1 from './days/1/solution';
 // MORE IMPORTS HERE
 const days: Day[] = [
+	day1,
 	// MORE DAYS HERE
 ];
 
