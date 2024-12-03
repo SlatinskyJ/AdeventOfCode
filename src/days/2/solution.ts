@@ -71,7 +71,7 @@ class Day2 extends Day {
 			return acc;
 		}, []);
 
-		console.log(comparisons, test);
+		// console.log(comparisons, test);
 
 		return test;
 	}
@@ -84,7 +84,7 @@ class Day2 extends Day {
 			return val - levels[i - 1];
 		});
 
-		console.log(levels, comparisons);
+		// console.log(levels, comparisons);
 		if (this.isComparisonsValid(comparisons)) return true;
 
 		const positive = comparisons.filter((val) => val >= 0);
