@@ -8,7 +8,4 @@ describe('On Day 1', () => {
 	test(`part1 example`, () => {
 		expect(day1.solveForPartOne(example)).toBe('11');
 	});
-	test(`part2 is identity function`, () => {
-		expect(day1.solveForPartTwo('hello')).toBe('hello');
-	});
 });
