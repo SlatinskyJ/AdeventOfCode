@@ -2,11 +2,13 @@ import { Day } from 'templates/day';
 
 import day1 from './days/1/solution';
 import day2 from './days/2/solution';
+import day3 from './days/3/solution';
 // MORE IMPORTS HERE
 
 const days: Map<number, Day> = new Map([
 	[1, day1],
 	[2, day2],
+    [3, day3],
     // MORE DAYS HERE
 ]);
 
