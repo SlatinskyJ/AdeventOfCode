@@ -9,6 +9,7 @@ import day6 from './days/6/solution';
 import day7 from './days/7/solution';
 import day8 from './days/8/solution';
 import day9 from './days/9/solution';
+import day10 from './days/10/solution';
 // MORE IMPORTS HERE
 
 const days: Map<number, Day> = new Map([
@@ -21,6 +22,7 @@ const days: Map<number, Day> = new Map([
 	[7, day7],
 	[8, day8],
 	[9, day9],
+    [10, day10],
     // MORE DAYS HERE
 ]);
 
