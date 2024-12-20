@@ -11,6 +11,7 @@ import day8 from './days/8/solution';
 import day9 from './days/9/solution';
 import day10 from './days/10/solution';
 import day11 from './days/11/solution';
+import day12 from './days/12/solution';
 // MORE IMPORTS HERE
 
 const days: Map<number, Day> = new Map([
@@ -23,9 +24,10 @@ const days: Map<number, Day> = new Map([
 	[7, day7],
 	[8, day8],
 	[9, day9],
-    [10, day10],
-    [11, day11],
-    // MORE DAYS HERE
+	[10, day10],
+	[11, day11],
+	[12, day12],
+	// MORE DAYS HERE
 ]);
 
 async function runDay(dayId: number) {
