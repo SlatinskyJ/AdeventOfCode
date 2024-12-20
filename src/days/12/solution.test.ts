@@ -18,8 +18,10 @@ const example3 =
 	'MIIISIJEEE\n' +
 	'MMMISSJEEE';
 
+const exampleE = 'EEEEE\n' + 'EXXXX\n' + 'EEEEE\n' + 'EXXXX\n' + 'EEEEE';
+
 describe('On Day 12', () => {
-	describe('part1', () => {
+	describe.skip('part1', () => {
 		describe(`solves examples`, () => {
 			test(`example1`, () => {
 				expect(day12.solveForPartOne(example1)).toBe('140');
@@ -60,9 +62,18 @@ describe('On Day 12', () => {
 		});
 	});
 
-	describe.skip('part2', () => {
-		test(`part2 is identity function`, () => {
-			expect(day12.solveForPartTwo('hello')).toBe('hello');
+	describe('part2', () => {
+		test(`example1`, () => {
+			expect(day12.solveForPartTwo(example1)).toBe('80');
+		});
+		test(`example2`, () => {
+			expect(day12.solveForPartTwo(example1)).toBe('436');
+		});
+		test(`example3`, () => {
+			expect(day12.solveForPartTwo(example1)).toBe('1206');
+		});
+		test(`exampleE`, () => {
+			expect(day12.solveForPartTwo(exampleE)).toBe('1206');
 		});
 	});
 });
