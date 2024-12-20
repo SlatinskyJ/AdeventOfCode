@@ -1,5 +1,5 @@
 import { Day } from 'templates/day';
-import { alwaysRule, applyRules, baseRule, evenRule, getStones, type TRule, type TShortcuts } from './utils.ts';
+import { applyRules, getStones, type TShortcuts } from './utils.ts';
 
 class Day11 extends Day {
 	constructor() {
@@ -7,17 +7,12 @@ class Day11 extends Day {
 	}
 
 	solveForPartOne(input: string, iterations: number = 25): string {
-		let stones = getStones(input);
-		const rules: TRule[] = [baseRule, evenRule, alwaysRule];
-
+		const stones = getStones(input);
 		const shortcuts: TShortcuts = new Map();
 
-		for (let i = 0; i < iterations; i++) {
-			console.log(`on ireration: ${i}`);
-			stones = stones.map(stone => applyRules(stone, shortcuts, ...rules)).reduce((acc, curr) => ([...acc, ...curr]), []);
-		}
-
-		return `${stones.length}`;
+		return `${stones
+			.map((stone) => applyRules(shortcuts, stone, iterations))
+			.reduce((acc, val) => acc + val, 0)}`;
 	}
 
 	solveForPartTwo(input: string): string {

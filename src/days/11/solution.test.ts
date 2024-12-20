@@ -1,72 +1,140 @@
 import { describe, test, expect } from 'bun:test';
 import day11 from './solution';
-import { alwaysRule, applyRules, baseRule, evenRule, getStones } from './utils.ts';
+import {
+	applyRule,
+	applyRules,
+	createShortcut,
+	getShortcut,
+	getStones,
+	type TStone,
+} from './utils.ts';
 
 describe('On Day 11', () => {
 	describe('part1', () => {
 		test(`example`, () => {
-			expect(day11.solveForPartOne('125 17', 25)).toBe('55312');
-		});
-
-		describe('rules', () => {
-			test.each([{
-				input: 123,
-				expected: [false, [123]] as [boolean, number[]],
-			}, {
-				input: 1234,
-				expected: [true, [12, 34]] as [boolean, number[]],
-			}])('evenRule', ({ input, expected }) => {
-				expect(evenRule(input)).toEqual(expected);
-			});
-
-			test.each([{
-				input: 1,
-				expected: [false, [1]] as [boolean, number[]],
-			}, {
-				input: 0,
-				expected: [true, [1]] as [boolean, number[]],
-			}])('baseRule', ({ input, expected }) => {
-				expect(baseRule(input)).toEqual(expected);
-			});
-
-			test.each([{
-				input: 1,
-				expected: [true, [2024]] as [boolean, number[]],
-			}, {
-				input: 2,
-				expected: [true, [4048]] as [boolean, number[]],
-			}])('alwaysRule', ({ input, expected }) => {
-				expect(alwaysRule(input)).toEqual(expected);
-			});
-		});
-
-		describe('rules runner', () => {
-			const rules = [baseRule, evenRule, alwaysRule];
-
-			test.each([{
-				input: 0,
-				expected: [1],
-			}, {
-				input: 1,
-				expected: [2024],
-			}, {
-				input: 22,
-				expected: [2, 2],
-			}])('applyRules', ({ input, expected }) => {
-				expect(applyRules(input, new Map, ...rules)).toEqual(expected);
-			});
+			expect(day11.solveForPartOne('125 17')).toBe('55312');
 		});
 
 		describe('utils', () => {
-			test.each([{
-				input: '123 2',
-				expected: [123, 2],
-			}, {
-				input: '2 3333 5 1',
-				expected: [2, 3333, 5, 1],
-			}])('getStones', ({ input, expected }) => {
+			test.each([
+				{
+					input: '123 2',
+					expected: [123, 2],
+				},
+				{
+					input: '2 3333 5 1',
+					expected: [2, 3333, 5, 1],
+				},
+			])('getStones', ({ input, expected }) => {
 				expect(getStones(input)).toEqual(expected);
 			});
+		});
+	});
+
+	describe('part2', () => {
+		test('createShortcut', () => {
+			const shortcuts = new Map();
+
+			createShortcut(shortcuts, 2, 0, 1);
+			expect(shortcuts.get(2)).toEqual([1]);
+
+			createShortcut(shortcuts, 5, 0, 1);
+			expect(shortcuts.get(5)).toEqual([1]);
+
+			createShortcut(shortcuts, 2, 1, 2);
+			expect(shortcuts.get(2)).toEqual([1, 2]);
+		});
+
+		test('getShortcut', () => {
+			const shortcuts = new Map([
+				[2, [1, 1]],
+				[5, [1, 1, 3, 4]],
+				[2222, [1, 2, 4]],
+			]);
+
+			expect(getShortcut(shortcuts, 2, 0)).toEqual(1);
+			expect(getShortcut(shortcuts, 2, 1)).toEqual(1);
+			expect(getShortcut(shortcuts, 5, 3)).toEqual(4);
+			expect(getShortcut(shortcuts, 2222, 1)).toEqual(2);
+		});
+
+		test.each([
+			{
+				stone: 0,
+				expected: [1, -1] as [TStone, TStone],
+			},
+			{
+				stone: 1,
+				expected: [2024, -1] as [TStone, TStone],
+			},
+			{
+				stone: 22,
+				expected: [2, 2] as [TStone, TStone],
+			},
+			{
+				stone: 221,
+				expected: [447304, -1] as [TStone, TStone],
+			},
+		])('applyRule', ({ stone, expected }) => {
+			expect(applyRule(stone)).toEqual(expected);
+		});
+
+		test.each([
+			{
+				shortcuts: new Map(),
+				stone: 1,
+				stepsLeft: 0,
+				expected: 1,
+			},
+			{
+				shortcuts: new Map(),
+				stone: 17,
+				stepsLeft: 1,
+				expected: 2,
+			},
+			{
+				shortcuts: new Map(),
+				stone: 17,
+				stepsLeft: 2,
+				expected: 2,
+			},
+			{
+				shortcuts: new Map(),
+				stone: 17,
+				stepsLeft: 3,
+				expected: 3,
+			},
+			{
+				shortcuts: new Map(),
+				stone: 17,
+				stepsLeft: 4,
+				expected: 6,
+			},
+			{
+				shortcuts: new Map(),
+				stone: 17,
+				stepsLeft: 5,
+				expected: 8,
+			},
+			{
+				shortcuts: new Map(),
+				stone: 17,
+				stepsLeft: 6,
+				expected: 15,
+			},
+			{
+				shortcuts: new Map(),
+				stone: 17,
+				stepsLeft: 7,
+				expected: 22,
+			},
+		])('applyRules', ({ shortcuts, stone, stepsLeft, expected }) => {
+			// console.log(stepsLeft);
+			expect(applyRules(shortcuts, stone, stepsLeft)).toEqual(expected);
+		});
+
+		test('solve example', () => {
+			expect(day11.solveForPartOne('125 17', 6)).toBe('22');
 		});
 	});
 });
