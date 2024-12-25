@@ -1,4 +1,10 @@
 import { Day } from 'templates/day';
+import {
+	BASE_INSTRUCTIONS,
+	createProcessor,
+	executeProgram,
+	parseInput,
+} from './utils.ts';
 
 class Day17 extends Day {
 	constructor() {
@@ -6,11 +12,21 @@ class Day17 extends Day {
 	}
 
 	solveForPartOne(input: string): string {
-		return input;
+		const [registers, program] = parseInput(input);
+
+		const processor = createProcessor(
+			BASE_INSTRUCTIONS,
+			program,
+			registers
+		);
+		const out = executeProgram(processor);
+
+		return out.join(',');
 	}
 
 	solveForPartTwo(input: string): string {
-		return input;
+		//TODO
+		return '';
 	}
 }
 
