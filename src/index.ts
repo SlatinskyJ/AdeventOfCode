@@ -17,6 +17,7 @@ import day14 from './days/14/solution';
 import day15 from './days/15/solution';
 import day16 from './days/16/solution';
 import day17 from './days/17/solution';
+import day18 from './days/18/solution';
 // MORE IMPORTS HERE
 
 const days: Map<number, Day> = new Map([
@@ -37,6 +38,7 @@ const days: Map<number, Day> = new Map([
 	[15, day15],
 	[16, day16],
     [17, day17],
+    [18, day18],
     // MORE DAYS HERE
 ]);
 

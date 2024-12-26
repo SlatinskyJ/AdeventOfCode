@@ -166,7 +166,10 @@ export const BASE_INSTRUCTIONS = [
 	cdvIns,
 ];
 
-export function executeProgram(processor: TProcessor): number[] {
+export function executeProgram(
+	processor: TProcessor,
+	maxOut?: number
+): number[] {
 	const { program, instructions } = processor;
 
 	let { counter, regs } = processor;
@@ -189,6 +192,8 @@ export function executeProgram(processor: TProcessor): number[] {
 
 		regs = newRegs;
 		counter = newCounter !== undefined ? newCounter : counter + 2;
+
+		if (maxOut && regs.out.length > maxOut) break;
 	} while (counter < program.length);
 
 	return regs.out;
